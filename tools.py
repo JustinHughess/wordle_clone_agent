@@ -1,6 +1,8 @@
+# Load word list once at startup into a set for fast lookups
 with open("words.txt") as f:
     VALID_WORDS = set(w.strip().lower() for w in f.readlines())
 
+# Tool definition that tells Claude how to submit a guess
 SUBMIT_GUESS_TOOL = {
     "name": "submit_guess",
     "description": "Submit a 5-letter word as your Wordle guess. The system will tell you if it's invalid so you can try again.",
@@ -17,10 +19,7 @@ SUBMIT_GUESS_TOOL = {
 }
 
 def validate_word(word):
-    """
-    Validate a word for Wordle.
-    Returns (is_valid, word_or_error_message)
-    """
+    """Validate a guess - checks length and that it exists in the word list."""
     word = word.lower().strip()
 
     if len(word) != 5:
