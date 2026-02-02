@@ -32,7 +32,7 @@ def get_agent_guess(guess_history=None):
     while True:
         response = client.messages.create(
             model=MODEL,
-            max_tokens=200,
+            max_tokens=1000,
             system=SYSTEM_PROMPT,
             tools=[SUBMIT_GUESS_TOOL],
             tool_choice={"type": "any"},
